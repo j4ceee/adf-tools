@@ -28,7 +28,13 @@ class Emoji extends InlineNode
         self::checkNodeData(static::class, $data, ['attrs']);
         self::checkRequiredKeys(['shortName'], $data['attrs']);
 
-        return new self(trim($data['attrs']['shortName'], ' \t\n\r\0\x0B:'), $data['attrs']['id'] ?? null, $data['attrs']['text'] ?? null);
+        return new self(
+            /* removes at both ends: colons (:), spaces, tab (\t), newline (\n), carriage returns (\r),
+               null byte (\0), vertical tabs (\x0B) */
+            preg_replace('/^[:\s\0\x0B]+|[:\s\0\x0B]+$/', '', $data['attrs']['shortName']),
+            $data['attrs']['id'] ?? null,
+            $data['attrs']['text'] ?? null
+        );
     }
 
     public function getShortName(): string
