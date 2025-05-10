@@ -12,14 +12,13 @@ class InlineCardExporter extends HtmlExporter
     public function __construct(InlineCard $node)
     {
         parent::__construct($node);
-        // TODO: finalize HTML construct
-        $this->tags = ['<div class="adf-inline-card">', '</div>'];
+        $this->tags = ['<a class="adf-inline-card" href="%s">', '</a>'];
     }
 
     public function export(): string
     {
         \assert($this->node instanceof InlineCard);
 
-        return $this->tags[0].$this->node->getUrl().$this->tags[1];
+        return sprintf($this->tags[0], $this->node->getUrl()).$this->node->getUrl().$this->tags[1];
     }
 }
