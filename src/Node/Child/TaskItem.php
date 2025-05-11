@@ -32,7 +32,7 @@ class TaskItem extends BlockNode implements JsonSerializable
         $this->todo = $todo;
     }
 
-    public static function load(array $data, ?BlockNode $parent = null): BlockNode
+    public static function load(array $data, ?BlockNode $parent = null, bool $skipUndefined = true): BlockNode
     {
         self::checkNodeData(static::class, $data, ['attrs']);
         self::checkRequiredKeys(['state'], $data['attrs']); // task item needs state key
@@ -44,6 +44,9 @@ class TaskItem extends BlockNode implements JsonSerializable
         // set content if defined
         if (\array_key_exists('content', $data)) {
             foreach ($data['content'] as $nodeData) {
+                if (!self::checkNodeType($data['type'], $skipUndefined))
+                    continue;
+
                 $class = Node::NODE_MAPPING[$nodeData['type']];
                 $child = $class::load($nodeData, $node);
 
