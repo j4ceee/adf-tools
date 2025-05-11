@@ -31,7 +31,7 @@ class Heading extends BlockNode implements JsonSerializable
         $this->level = $level;
     }
 
-    public static function load(array $data, ?BlockNode $parent = null): self
+    public static function load(array $data, ?BlockNode $parent = null, bool $skipUndefined = true): self
     {
         self::checkNodeData(static::class, $data, ['attrs']);
         self::checkRequiredKeys(['level'], $data['attrs']);
@@ -41,6 +41,9 @@ class Heading extends BlockNode implements JsonSerializable
         // set content if defined
         if (\array_key_exists('content', $data)) {
             foreach ($data['content'] as $nodeData) {
+                if (!self::checkNodeType($data['type'], $skipUndefined))
+                    continue;
+
                 $class = Node::NODE_MAPPING[$nodeData['type']];
                 $child = $class::load($nodeData, $node);
 
