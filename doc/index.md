@@ -165,6 +165,11 @@ $document = (new Document())
 ;
 ```
 
+Undefined block nodes are skipped by default and not loaded. You can make it throw an exception instead by setting the `load()` parameter `$skipUndefined` to `false`.
+```php
+/* params: array to parse, parent, skip undefined */
+$document = Document::load($json, null, false);
+```
 
 ### JSON export
 Every node provide a `toJson` method to serialize itself as a JSON document. 

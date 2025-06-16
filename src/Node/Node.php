@@ -47,6 +47,7 @@ use JsonSerializable;
  */
 abstract class Node implements JsonSerializable
 {
+    /** @var array{string, class-string<Node>} */
     public const NODE_MAPPING = [
         // block nodes
         'doc' => Document::class,
@@ -72,6 +73,8 @@ abstract class Node implements JsonSerializable
         'tableRow' => TableRow::class,
         'media' => Media::class,
         'inlineCard' => InlineCard::class,
+        //'blockCard' => InlineCard::class,
+        //'embedCard' => InlineCard::class,
 
         // inline nodes
         'emoji' => Emoji::class,
@@ -100,6 +103,7 @@ abstract class Node implements JsonSerializable
         $this->parent = $parent;
     }
 
+    /** @return null|Node|Document */
     public function end(): ?self
     {
         return $this->parent;

@@ -23,6 +23,7 @@ trait TextBuilder
         return $this;
     }
 
+    /** Italic */
     public function em(string $text): self
     {
         $this->append(new Text($text, new Em()));
@@ -30,6 +31,7 @@ trait TextBuilder
         return $this;
     }
 
+    /** Bold */
     public function strong(string $text): self
     {
         $this->append(new Text($text, new Strong()));
@@ -37,6 +39,7 @@ trait TextBuilder
         return $this;
     }
 
+    /** Underline */
     public function underline(string $text): self
     {
         $this->append(new Text($text, new Underline()));
@@ -44,6 +47,7 @@ trait TextBuilder
         return $this;
     }
 
+    /** Strikethrough */
     public function strike(string $text): self
     {
         $this->append(new Text($text, new Strike()));
@@ -51,6 +55,7 @@ trait TextBuilder
         return $this;
     }
 
+    /** Subscript (x₃)*/
     public function sub(string $text): self
     {
         $this->append(new Text($text, new Subsup('sub')));
@@ -58,6 +63,7 @@ trait TextBuilder
         return $this;
     }
 
+    /** Superscript (x³)*/
     public function sup(string $text): self
     {
         $this->append(new Text($text, new Subsup('sup')));
@@ -65,6 +71,11 @@ trait TextBuilder
         return $this;
     }
 
+    /**
+     * Coloured Text
+     * @param string $text
+     * @param string $color Any colour string (RGB, Hex, colour names)
+     */
     public function color(string $text, string $color): self
     {
         $this->append(new Text($text, new TextColor($color)));
@@ -72,6 +83,7 @@ trait TextBuilder
         return $this;
     }
 
+    /** Anchor (Link) */
     public function link(string $text, string $href, ?string $title = null): self
     {
         $this->append(new Text($text, new Link($href, $title)));

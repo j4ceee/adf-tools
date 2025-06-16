@@ -43,16 +43,16 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->paragraph()
-            ->color('Luke, ', 'red')
-            ->text('may ')
-            ->em('the ')
-            ->strong('force ')
-            ->text('be ')
-            ->underline('with ')
-            ->strike('you! ')
-            ->sub('Obi-Wan')
-            ->sup('Kenobi')
-            ->Link('Star Wars @ Wikipedia', 'https://wikipedia.org/wiki/Star_Wars')
+                ->color('Luke, ', 'red')
+                ->text('may ')
+                ->em('the ')
+                ->strong('force ')
+                ->text('be ')
+                ->underline('with ')
+                ->strike('you! ')
+                ->sub('Obi-Wan')
+                ->sup('Kenobi')
+                ->Link('Star Wars @ Wikipedia', 'https://wikipedia.org/wiki/Star_Wars')
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -64,7 +64,7 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->paragraph()
-            ->mention('ABCDE-ABCDE-ABCDE-ABCDE', '@DarkVador', Mention::ACCESS_LEVEL_APPLICATION)
+                ->mention('ABCDE-ABCDE-ABCDE-ABCDE', '@DarkVador', Mention::ACCESS_LEVEL_APPLICATION)
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -76,8 +76,8 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->paragraph()
-            ->text('Hello world')
-            ->text('How are you')
+                ->text('Hello world')
+                ->text('How are you')
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -89,9 +89,9 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->blockquote()
-            ->paragraph()
-            ->text('quoted text')
-            ->end()
+                ->paragraph()
+                    ->text('quoted text')
+                ->end()
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -103,7 +103,7 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->heading(3)
-            ->text('heading text')
+                ->text('heading text')
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -115,7 +115,7 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->codeblock('php')
-            ->text('var_dump($foo);')
+                ->text('var_dump($foo);')
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -127,16 +127,16 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->bulletlist()
-            ->item()
-            ->paragraph()
-            ->text('item 1')
-            ->end()
-            ->end()
-            ->item()
-            ->paragraph()
-            ->text('item 2')
-            ->end()
-            ->end()
+                ->item()
+                    ->paragraph()
+                        ->text('item 1')
+                    ->end()
+                ->end()
+                ->item()
+                    ->paragraph()
+                        ->text('item 2')
+                    ->end()
+                ->end()
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -148,16 +148,16 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->orderedlist()
-            ->item()
-            ->paragraph()
-            ->text('item 1')
-            ->end()
-            ->end()
-            ->item()
-            ->paragraph()
-            ->text('item 2')
-            ->end()
-            ->end()
+                ->item()
+                    ->paragraph()
+                        ->text('item 1')
+                    ->end()
+                ->end()
+                ->item()
+                    ->paragraph()
+                        ->text('item 2')
+                    ->end()
+                ->end()
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -186,9 +186,9 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->panel(Panel::INFO)
-            ->paragraph()
-            ->text('panel text')
-            ->end()
+                ->paragraph()
+                    ->text('panel text')
+                ->end()
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -225,8 +225,8 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->mediaSingle(MediaSingle::LAYOUT_WIDE)
-            ->media('6e7c7f2c-dd7a-499c-bceb-6f32bfbf30b5', Media::TYPE_FILE, 'my project files', 100, 200)
-            ->end()
+                ->media('6e7c7f2c-dd7a-499c-bceb-6f32bfbf30b5', Media::TYPE_FILE, 'my project files', 100, 200)
+                    ->end()
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -254,10 +254,10 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->mediaGroup()
-            ->media('6e7c7f2c-dd7a-499c-bceb-6f32bfbf30b5', Media::TYPE_FILE, 'my project files', 100, 200)
-            ->end()
-            ->media('7a7c7f2c-dd7a-499c-bceb-6f32bfbf30c7', Media::TYPE_FILE, 'my project files', 100, 200)
-            ->end()
+                ->media('6e7c7f2c-dd7a-499c-bceb-6f32bfbf30b5', Media::TYPE_FILE, 'my project files', 100, 200)
+                    ->end()
+                ->media('7a7c7f2c-dd7a-499c-bceb-6f32bfbf30c7', Media::TYPE_FILE, 'my project files', 100, 200)
+                    ->end()
             ->end()
         ;
         $exporter = new DocumentExporter($document);
@@ -269,30 +269,30 @@ final class DocumentExporterTest extends TestCase
     {
         $document = (new Document())
             ->table(Table::LAYOUT_START)
-            ->row()
-            ->header()
-            ->paragraph()
-            ->text('header 1')
-            ->end()
-            ->end()
-            ->header()
-            ->paragraph()
-            ->text('header 2')
-            ->end()
-            ->end()
-            ->end()
-            ->row()
-            ->cell()
-            ->paragraph()
-            ->text('cell 1')
-            ->end()
-            ->end()
-            ->cell()
-            ->paragraph()
-            ->text('cell 2')
-            ->end()
-            ->end()
-            ->end()
+                ->row()
+                    ->header()
+                        ->paragraph()
+                            ->text('header 1')
+                        ->end()
+                    ->end()
+                    ->header()
+                        ->paragraph()
+                            ->text('header 2')
+                        ->end()
+                    ->end()
+                ->end()
+                ->row()
+                    ->cell()
+                        ->paragraph()
+                            ->text('cell 1')
+                        ->end()
+                    ->end()
+                    ->cell()
+                        ->paragraph()
+                            ->text('cell 2')
+                        ->end()
+                    ->end()
+                ->end()
             ->end()
         ;
         $exporter = new DocumentExporter($document);
